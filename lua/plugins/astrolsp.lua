@@ -24,12 +24,13 @@ return {
           -- "go",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
-          -- "python",
+          "lua",
+          "markdown",
         },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
-        -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
-        -- "lua_ls",
+        "lua_ls",
+        "tsserver",
       },
       timeout_ms = 1000, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
@@ -38,11 +39,12 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
-      'clojure_lsp',
-      'lua_ls',
-      'nil_ls',
-      'terraformls',
-      'tsserver',
+      "biome",
+      "clojure_lsp",
+      "lua_ls",
+      "nil_ls",
+      "terraformls",
+      "tsserver",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
@@ -75,7 +77,9 @@ return {
           -- the rest of the autocmd options (:h nvim_create_autocmd)
           desc = "Refresh codelens (buffer)",
           callback = function(args)
-            if require("astrolsp").config.features.codelens then vim.lsp.codelens.refresh { bufnr = args.buf } end
+            if require("astrolsp").config.features.codelens then
+              vim.lsp.codelens.refresh { bufnr = args.buf }
+            end
           end,
         },
       },
@@ -85,15 +89,20 @@ return {
       n = {
         -- a `cond` key can provided as the string of a server capability to be required to attach, or a function with `client` and `bufnr` parameters from the `on_attach` that returns a boolean
         gD = {
-          function() vim.lsp.buf.declaration() end,
+          function()
+            vim.lsp.buf.declaration()
+          end,
           desc = "Declaration of current symbol",
           cond = "textDocument/declaration",
         },
         ["<Leader>uY"] = {
-          function() require("astrolsp.toggles").buffer_semantic_tokens() end,
+          function()
+            require("astrolsp.toggles").buffer_semantic_tokens()
+          end,
           desc = "Toggle LSP semantic highlight (buffer)",
           cond = function(client)
-            return client.supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens ~= nil
+            return client.supports_method("textDocument/semanticTokens/full")
+              and vim.lsp.semantic_tokens ~= nil
           end,
         },
       },

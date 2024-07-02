@@ -11,11 +11,11 @@ return {
     -- Configure core features of AstroNvim
     features = {
       large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
-      autopairs = true,                                 -- enable autopairs at start
-      cmp = true,                                       -- enable completion at start
-      diagnostics_mode = 3,                             -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
-      highlighturl = true,                              -- highlight URLs at start
-      notifications = true,                             -- enable notifications at start
+      autopairs = true, -- enable autopairs at start
+      cmp = true, -- enable completion at start
+      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+      highlighturl = true, -- highlight URLs at start
+      notifications = true, -- enable notifications at start
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
@@ -26,7 +26,7 @@ return {
     options = {
       opt = { -- vim.opt.<key>
         cmdheight = 1,
-        foldcolumn = '0',
+        foldcolumn = "0",
         number = false,
         relativenumber = false,
         shada = "!,'1000,<50,s10,h",
@@ -50,14 +50,14 @@ return {
       --   string[] : a list of directory patterns to look for
       --   fun(bufnr: integer): string|string[] : a function that takes a buffer number and outputs detected roots
       detector = {
-        "lsp",                                                 -- highest priority is getting workspace from running language servers
-        { ".git", "_darcs",   ".hg",         ".bzr", ".svn" }, -- next check for a version controlled parent directory
-        { "lua",  "MakeFile", "package.json" },                -- lastly check for known project root files
+        "lsp", -- highest priority is getting workspace from running language servers
+        { ".git", "_darcs", ".hg", ".bzr", ".svn" }, -- next check for a version controlled parent directory
+        { "lua", "MakeFile", "package.json" }, -- lastly check for known project root files
       },
       -- ignore things from root detection
       ignore = {
         servers = {}, -- list of language server names to ignore (Ex. { "efm" })
-        dirs = {},    -- list of directory patterns (Ex. { "~/.cargo/*" })
+        dirs = {}, -- list of directory patterns (Ex. { "~/.cargo/*" })
       },
       -- automatically update working directory (update manually with `:AstroRoot`)
       autochdir = true,
@@ -75,15 +75,25 @@ return {
         -- second key is the lefthand side of the map
 
         -- navigate buffer tabs
-        ["]b"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
-        ["[b"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+        ["]b"] = {
+          function()
+            require("astrocore.buffer").nav(vim.v.count1)
+          end,
+          desc = "Next buffer",
+        },
+        ["[b"] = {
+          function()
+            require("astrocore.buffer").nav(-vim.v.count1)
+          end,
+          desc = "Previous buffer",
+        },
 
         -- mappings seen under group name "Buffer"
         ["<Leader>bd"] = {
           function()
-            require("astroui.status.heirline").buffer_picker(
-              function(bufnr) require("astrocore.buffer").close(bufnr) end
-            )
+            require("astroui.status.heirline").buffer_picker(function(bufnr)
+              require("astrocore.buffer").close(bufnr)
+            end)
           end,
           desc = "Close buffer from tabline",
         },
@@ -96,7 +106,7 @@ return {
         -- ["<C-S>"] = false,
 
         -- Overridden in vim-fugitive config
-        ['<leader>gg'] = {},
+        ["<leader>gg"] = {},
       },
     },
   },

@@ -3,7 +3,7 @@
     opts = function(_, opts)
       local cmp = require('cmp')
 
-      -- Avoid interfering with copilot
+      -- Avoid interfering with GitHub Copilot
       opts.mapping['<Tab>'] = cmp.config.disable
       opts.mapping['<S-Tab>'] = cmp.config.disable
 
