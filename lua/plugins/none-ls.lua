@@ -16,6 +16,7 @@ return {
       --null_ls.builtins.formatting.eslint,
       --null_ls.builtins.formatting.prettier,
       null_ls.builtins.diagnostics.selene,
+      null_ls.builtins.formatting.nixfmt,
       null_ls.builtins.formatting.stylua,
     }
     return config -- return final config table
