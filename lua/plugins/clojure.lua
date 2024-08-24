@@ -90,6 +90,7 @@ return {
     init = function()
       vim.g["conjure#client#clojure#nrepl#connection#auto_repl#cmd"] =
         "conjure-auto-repl $port"
+      vim.g["conjure#client#clojure#nrepl#refresh#backend"] = "clj-reload"
       vim.g["conjure#client#clojure#nrepl#refresh#before"] = "user/stop"
       vim.g["conjure#client#clojure#nrepl#refresh#after"] = "user/start"
       vim.g["conjure#log#botright"] = true
