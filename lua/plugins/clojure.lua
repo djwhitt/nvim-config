@@ -40,6 +40,7 @@ return {
         "^tests",
         "^thread$",
         "^try$",
+        "^vthread-loop",
         "^with",
       }
     end,
