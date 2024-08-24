@@ -39,6 +39,7 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
+      "bashls",
       "biome",
       "clojure_lsp",
       "lua_ls",
