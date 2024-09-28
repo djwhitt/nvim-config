@@ -19,7 +19,7 @@ return {
     end
     opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() and has_words_before() then
-        cmp.select_next_itemh()
+        cmp.select_next_item()
       elseif luasnip.expandable() then
         luasnip.expand()
       elseif luasnip.expand_or_jumpable() then
