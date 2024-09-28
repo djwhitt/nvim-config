@@ -42,10 +42,11 @@ return {
       "bashls",
       "biome",
       "clojure_lsp",
+      "eslint",
       "lua_ls",
       "nil_ls",
       "terraformls",
-      "tsserver",
+      "ts_ls",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
