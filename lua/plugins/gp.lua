@@ -1,12 +1,28 @@
 return {
   "robitx/gp.nvim",
   config = function()
-    -- configuration for the plugin
-    local conf = {
-      openai_api_key = { "openai-cli-key" },
+    require("gp").setup {
+      providers = {
+        anthropic = {
+          endpoint = "https://api.anthropic.com/v1/messages",
+          secret = { "anthropic-cli-key" },
+        },
+        openai = {
+          endpoint = "https://openrouter.ai/api/v1/chat/completions",
+          secret = { "openrouter-cli-key" },
+        },
+      },
+      agents = {
+        {
+          provider = "openai",
+          name = "CodeO1-mini",
+          chat = false,
+          command = true,
+          model = "openai/o1-mini-2024-09-12",
+          system_prompt = require("gp.defaults").code_system_prompt,
+        },
+      },
     }
-    -- set up the plugin with the provided configuration
-    require("gp").setup(conf)
 
     -- add custom key mappings using which-key
     require("which-key").add {
@@ -180,29 +196,6 @@ return {
         { "<C-g>ww", "<cmd>GpWhisper<cr>", desc = "Whisper" },
         { "<C-g>x", "<cmd>GpContext<cr>", desc = "Toggle GpContext" },
       },
-
-      -- example commented-out mappings for which-key
-      --wk.add {
-      --  -- visual mode mappings
-      --  {
-      --    mode = { "v" },
-      --    nowait = true,
-      --    remap = false,
-      --    {
-      --      "<leader><leader>",
-      --      ":<c-u>'<,'>gprewrite<cr>",
-      --      desc = "visual rewrite",
-      --    },
-      --  },
-
-      --  -- normal mode mappings
-      --  {
-      --    mode = { "n" },
-      --    nowait = true,
-      --    remap = false,
-      --    { "<leader><leader>", "<cmd>%gprewrite<cr>", desc = "buffer rewrite" },
-      --  },
-      --}
     }
   end,
 }
