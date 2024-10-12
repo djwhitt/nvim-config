@@ -30,7 +30,7 @@ return {
       },
       disabled = { -- disable formatting capabilities for the listed language servers
         "lua_ls",
-        "tsserver",
+        "ts_ls",
       },
       timeout_ms = 1000, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
