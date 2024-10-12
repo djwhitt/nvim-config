@@ -1,5 +1,3 @@
--- Customize None-ls sources
-
 ---@type LazySpec
 return {
   "nvimtools/none-ls.nvim",
@@ -11,12 +9,16 @@ return {
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
     config.sources = {
-      -- Set a formatter
-      null_ls.builtins.diagnostics.selene,
-      null_ls.builtins.formatting.nixfmt,
-      null_ls.builtins.formatting.prettier,
+      -- Lua
+      null_ls.builtins.diagnostics.selene, -- Lua diagnostics
       null_ls.builtins.formatting.stylua,
+
+      -- JavaScript and TypeScript
+      null_ls.builtins.formatting.prettier,
+
+      -- Nix
+      null_ls.builtins.formatting.nixfmt,
     }
-    return config -- return final config table
+    return config
   end,
 }

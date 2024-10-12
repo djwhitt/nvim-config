@@ -33,9 +33,37 @@ return {
         "ts_ls",
       },
       timeout_ms = 1000, -- default format timeout
-      -- filter = function(client) -- fully override the default formatting function
-      --   return true
-      -- end
+      filter = function(client) -- fully override the default formatting function
+        local util = require("lspconfig.util")
+
+        local git_root = util.find_git_ancestor(vim.fn.expand("%:p"))
+        local biome_filetypes = {
+          "javascript",
+          "javascriptreact",
+          "json",
+          "jsonc",
+          "typescript",
+          "typescript.tsx",
+          "typescriptreact",
+          "astro",
+          "svelte",
+          "vue",
+          "css",
+        }
+        -- If the filetype supported by Biome use Biome or fallback to other
+        -- formatters if there is no Biome config at the git root.
+        if vim.tbl_contains(biome_filetypes, vim.bo.filetype) then
+          return (
+            client.name == "biome"
+            or (
+              vim.fn.filereadable(git_root .. "/biome.json") == 0
+              and vim.fn.filereadable(git_root .. "/biome.jsonc") == 0
+            )
+          )
+        end
+
+        return true
+      end,
     },
     -- enable servers that you already have installed without mason
     servers = {
@@ -80,7 +108,7 @@ return {
           desc = "Refresh codelens (buffer)",
           callback = function(args)
             if require("astrolsp").config.features.codelens then
-              vim.lsp.codelens.refresh { bufnr = args.buf }
+              vim.lsp.codelens.refresh({ bufnr = args.buf })
             end
           end,
         },
