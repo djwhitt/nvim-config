@@ -7,11 +7,13 @@ return {
       suggestion = { enabled = false },
       panel = { enabled = false },
       filetypes = {
-        ["*"] = false,
         clojure = true,
         javascipt = true,
         lua = true,
+        make = true,
         typescript = true,
+
+        ["*"] = false,
       },
     }
   end,
