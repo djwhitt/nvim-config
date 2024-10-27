@@ -11,6 +11,8 @@ return {
         javascipt = true,
         lua = true,
         make = true,
+        nix = true;
+        sh = true,
         typescript = true,
 
         ["*"] = false,
