@@ -3,7 +3,6 @@ return {
   config = function()
     require("gp").setup({
       providers = {
-        -- TODO: make Anthropic the default
         anthropic = {
           endpoint = "https://api.anthropic.com/v1/messages",
           secret = { "anthropic-cli-key" },
@@ -21,7 +20,9 @@ return {
           secret = { "gemini-cli-key" },
         },
       },
-      default_command_agent = "CodeClaude-3-5-Sonnet",
+      default_command_agent = "CodeGemini-1-5-flash",
+      --default_command_agent = "CodeGemini-1-5-Pro",
+      --default_command_agent = "Claude-3-5-Sonnet",
       default_chat_agent = "ChatClaude-3-5-Sonnet",
       agents = {
         {
@@ -30,6 +31,22 @@ return {
           chat = false,
           command = true,
           model = "openai/o1-mini-2024-09-12",
+          system_prompt = require("gp.defaults").code_system_prompt,
+        },
+        {
+          provider = "googleai",
+          name = "CodeGemini-1-5-Pro",
+          chat = false,
+          command = true,
+          model = { model = "gemini-1.5-pro", temperature = 0.3, top_p = 1 },
+          system_prompt = require("gp.defaults").code_system_prompt,
+        },
+        {
+          provider = "googleai",
+          name = "CodeGemini-1-5-Flash",
+          chat = false,
+          command = true,
+          model = { model = "gemini-1.5-flash", temperature = 0.3, top_p = 1 },
           system_prompt = require("gp.defaults").code_system_prompt,
         },
       },
