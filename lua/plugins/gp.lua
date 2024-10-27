@@ -1,17 +1,28 @@
 return {
   "robitx/gp.nvim",
   config = function()
-    require("gp").setup {
+    require("gp").setup({
       providers = {
+        -- TODO: make Anthropic the default
         anthropic = {
           endpoint = "https://api.anthropic.com/v1/messages",
           secret = { "anthropic-cli-key" },
         },
         openai = {
-          endpoint = "https://openrouter.ai/api/v1/chat/completions",
-          secret = { "openrouter-cli-key" },
+          endpoint = "https://api.openai.com/v1/chat/completions",
+          secret = { "openai-cli-key" },
+        },
+        --openai = {
+        --  endpoint = "https://openrouter.ai/api/v1/chat/completions",
+        --  secret = { "openrouter-cli-key" },
+        --},
+        googleai = {
+          endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
+          secret = { "gemini-cli-key" },
         },
       },
+      default_command_agent = "CodeClaude-3-5-Sonnet",
+      default_chat_agent = "ChatClaude-3-5-Sonnet",
       agents = {
         {
           provider = "openai",
@@ -22,10 +33,10 @@ return {
           system_prompt = require("gp.defaults").code_system_prompt,
         },
       },
-    }
+    })
 
     -- add custom key mappings using which-key
-    require("which-key").add {
+    require("which-key").add({
       -- VISUAL mode mappings
       -- s, x, v modes are handled the same way by which_key
       {
@@ -94,6 +105,11 @@ return {
           desc = "Whisper Rewrite",
         },
         {
+          "<leader>;;",
+          ":<C-u>'<,'>GpWhisperRewrite<cr>",
+          desc = "Whisper Rewrite",
+        },
+        {
           "<C-g>wt",
           ":<C-u>'<,'>GpWhisperTabnew<cr>",
           desc = "Whisper Tabnew",
@@ -143,6 +159,11 @@ return {
           "<C-g>wr",
           "<cmd>GpWhisperRewrite<cr>",
           desc = "Whisper Inline Rewrite",
+        },
+        {
+          "<leader>;;",
+          ":<C-u>%GpWhisperRewrite<cr>",
+          desc = "Whisper Rewrite",
         },
         { "<C-g>wt", "<cmd>GpWhisperTabnew<cr>", desc = "Whisper Tabnew" },
         { "<C-g>wv", "<cmd>GpWhisperVnew<cr>", desc = "Whisper Vnew" },
@@ -196,6 +217,6 @@ return {
         { "<C-g>ww", "<cmd>GpWhisper<cr>", desc = "Whisper" },
         { "<C-g>x", "<cmd>GpContext<cr>", desc = "Toggle GpContext" },
       },
-    }
+    })
   end,
 }
