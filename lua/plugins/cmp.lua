@@ -67,6 +67,10 @@ return {
       },
     }
 
+    opts.completion = {
+      autocomplete = false;
+    }
+
     return opts
   end,
 }
