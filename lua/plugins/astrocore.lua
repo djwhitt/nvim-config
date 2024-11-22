@@ -30,7 +30,7 @@ return {
         number = false,
         relativenumber = false,
         shada = "!,'1000,<50,s10,h",
-        showtabline = 1,
+        showtabline = 2,
         signcolumn = "yes",
         spell = false,
         splitbelow = false,
