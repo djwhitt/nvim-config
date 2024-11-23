@@ -5,19 +5,19 @@ return {
       providers = {
         anthropic = {
           endpoint = "https://api.anthropic.com/v1/messages",
-          secret = { "anthropic-cli-key" },
+          secret = { "anthropic-api-key" },
         },
         openai = {
           endpoint = "https://api.openai.com/v1/chat/completions",
-          secret = { "openai-cli-key" },
+          secret = { "openai-api-key" },
         },
         --openai = {
         --  endpoint = "https://openrouter.ai/api/v1/chat/completions",
-        --  secret = { "openrouter-cli-key" },
+        --  secret = { "openrouter-api-key" },
         --},
         googleai = {
           endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
-          secret = { "gemini-cli-key" },
+          secret = { "googleai-api-key" },
         },
       },
       default_command_agent = "CodeGemini-1-5-flash",
