@@ -17,6 +17,7 @@ return {
             :match("^%s*$")
           == nil
     end
+
     opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() and has_words_before() then
         cmp.select_next_item()
@@ -29,22 +30,44 @@ return {
       end
     end)
 
+    opts.event = {
+      on_confirm_done = function()
+        local ft = vim.bo.filetype
+        if ft == "clojure" then
+          -- Get current Parinfer state
+          local was_enabled = vim.b.parinfer_enabled == true
+
+          if not was_enabled then
+            -- Only enable if it wasn't already enabled
+            vim.cmd("ParinferOn")
+
+            -- Restore previous state after completion
+            vim.defer_fn(function()
+              vim.cmd("ParinferOff")
+            end, 0)
+          end
+        end
+
+        return true
+      end,
+    }
+
     -- copilot-cmp recommended config
-    opts.sources = cmp.config.sources {
+    opts.sources = cmp.config.sources({
       { name = "copilot", group_index = 2 },
       { name = "nvim_lsp", group_index = 2 },
       { name = "luasnip", group_index = 2 },
       --{ name = "buffer", group_index = 2 },
       { name = "path", group_index = 2 },
-    }
+    })
 
     -- copilot-cmp recommended config
     opts.formatting = {
-      format = lspkind.cmp_format {
+      format = lspkind.cmp_format({
         mode = "symbol",
         max_width = 50,
         symbol_map = { Copilot = "" },
-      },
+      }),
     }
 
     -- copilot-cmp recommended config
@@ -68,7 +91,7 @@ return {
     }
 
     opts.completion = {
-      autocomplete = false;
+      autocomplete = false,
     }
 
     return opts
