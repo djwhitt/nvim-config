@@ -9,6 +9,9 @@ return {
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
     config.sources = {
+      -- Clojure
+      null_ls.builtins.formatting.zprint,
+
       -- Lua
       null_ls.builtins.diagnostics.selene, -- Lua diagnostics
       null_ls.builtins.formatting.stylua,

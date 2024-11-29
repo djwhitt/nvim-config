@@ -62,6 +62,11 @@ return {
           )
         end
 
+        -- Use zprint for Clojure
+        if vim.bo.filetype == "clojure" then
+          return client.name == "null-ls"
+        end
+
         return true
       end,
     },
