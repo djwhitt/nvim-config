@@ -177,11 +177,6 @@ return {
           "<cmd>GpWhisperRewrite<cr>",
           desc = "Whisper Inline Rewrite",
         },
-        {
-          "<leader>;;",
-          ":<C-u>%GpWhisperRewrite<cr>",
-          desc = "Whisper Rewrite",
-        },
         { "<C-g>wt", "<cmd>GpWhisperTabnew<cr>", desc = "Whisper Tabnew" },
         { "<C-g>wv", "<cmd>GpWhisperVnew<cr>", desc = "Whisper Vnew" },
         { "<C-g>ww", "<cmd>GpWhisper<cr>", desc = "Whisper" },

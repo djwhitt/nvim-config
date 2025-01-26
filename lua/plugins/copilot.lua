@@ -13,6 +13,7 @@ return {
         make = true,
         nix = true;
         sh = true,
+        sql = true,
         typescript = true,
 
         ["*"] = false,
