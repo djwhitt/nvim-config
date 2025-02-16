@@ -26,6 +26,7 @@
   "gp.nvim": { "branch": "main", "commit": "2372d5323c6feaa2e9c19f7ccb537c615d878e18" },
   "guess-indent.nvim": { "branch": "main", "commit": "6cd61f7a600bb756e558627cd2e740302c58e32d" },
   "heirline.nvim": { "branch": "master", "commit": "cc359b628266cb9a84b2d71c883f2b99e16473a0" },
+  "image.nvim": { "branch": "master", "commit": "6ffafab2e98b5bda46bf227055aa84b90add8cdc" },
   "indent-blankline.nvim": { "branch": "master", "commit": "18603eb949eba08300799f64027af11ef922283f" },
   "lazy.nvim": { "branch": "main", "commit": "7e6c863bc7563efbdd757a310d17ebc95166cef3" },
   "lazydev.nvim": { "branch": "main", "commit": "f59bd14a852ca43db38e3662395354cb2a9b13e0" },
