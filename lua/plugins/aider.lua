@@ -29,8 +29,8 @@ return {
         opts.window = {
           mappings = {
             ["+"] = { "nvim_aider_add", desc = "add to aider" },
-            ["-"] = { "nvim_aider_drop", desc = "drop from aider" }
-          }
+            ["-"] = { "nvim_aider_drop", desc = "drop from aider" },
+          },
         }
         require("nvim_aider.neo_tree").setup(opts)
       end,
