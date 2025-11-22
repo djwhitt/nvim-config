@@ -30,7 +30,7 @@ return {
         number = false,
         relativenumber = false,
         shada = "!,'1000,<50,s10,h",
-        showtabline = 2,
+        showtabline = 0,
         signcolumn = "yes",
         spell = false,
         splitbelow = false,
@@ -99,7 +99,7 @@ return {
         },
 
         ["<Leader><Leader>"] = {
-          '<cmd>Dispatch<cr>',
+          "<cmd>Dispatch<cr>",
           desc = "Dispatch",
         },
 
@@ -112,6 +112,34 @@ return {
 
         -- Overridden in vim-fugitive config
         ["<leader>gg"] = {},
+
+        ["<Leader>fp"] = {
+          "<cmd>NeovimProjectDiscover<cr>",
+          desc = "Find project",
+        },
+
+        ["gl"] = {
+          function()
+            require("user.utils.e").send_under_cursor_to_e()
+          end,
+          desc = "Send thing under cursor to e",
+        },
+
+        -- Delete/change without affecting clipboard
+        ["d"] = { '"_d', desc = "Delete without clipboard" },
+        ["D"] = { '"_D', desc = "Delete to end without clipboard" },
+        ["c"] = { '"_c', desc = "Change without clipboard" },
+        ["C"] = { '"_C', desc = "Change to end without clipboard" },
+        ["x"] = { '"_x', desc = "Delete char without clipboard" },
+        ["s"] = { '"_s', desc = "Substitute without clipboard" },
+      },
+      v = {
+        -- Delete/change without affecting clipboard
+        ["d"] = { '"_d', desc = "Delete without clipboard" },
+        ["c"] = { '"_c', desc = "Change without clipboard" },
+        ["x"] = { '"_x', desc = "Delete char without clipboard" },
+        ["s"] = { '"_s', desc = "Substitute without clipboard" },
+        ["p"] = { '"_dP', desc = "Paste without overwriting clipboard" },
       },
     },
   },
