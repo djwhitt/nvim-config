@@ -31,7 +31,6 @@ Run StyLua manually: `stylua lua/`
 - Each plugin gets its own file in `lua/plugins/` returning a Lazy.nvim plugin spec table
 - AstroNvim's `astrocore`, `astrolsp`, and `astroui` handle centralized config — prefer extending these over ad-hoc `vim.api` calls
 - Disabled plugins/features are commented out in-place rather than deleted, to preserve reference
-- `.bak` files in `lua/plugins/` are disabled plugin configs kept for reference
 
 ## Key Design Decisions
 
@@ -39,3 +38,6 @@ Run StyLua manually: `stylua lua/`
 - Copilot is enabled only for specific filetypes (clojure, javascript, lua, make, nix, sh, sql, typescript) — all others are disabled by default
 - LSP formatting is disabled for `lua_ls` and `ts_ls` in favor of dedicated formatters
 - Line numbers and tabline are disabled for a minimal UI
+- Completion is manual-trigger only (`<C-Space>`) — auto_show is disabled
+- snacks.nvim provides picker, dashboard, notifications, and input UI
+- mason.nvim v2 requires `build = false` workaround (MasonUpdate async bug)
