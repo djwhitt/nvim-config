@@ -1,6 +1,6 @@
 return {
   {
-    'rebelot/heirline.nvim',
+    "rebelot/heirline.nvim",
     opts = function(_, opts)
       opts.winbar = nil
       return opts

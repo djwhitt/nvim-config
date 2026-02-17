@@ -13,7 +13,7 @@ return {
       large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
       autopairs = true, -- enable autopairs at start
       cmp = true, -- enable completion at start
-      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+      diagnostics = true, -- enable diagnostics at start
       highlighturl = true, -- highlight URLs at start
       notifications = true, -- enable notifications at start
     },
@@ -88,16 +88,6 @@ return {
           desc = "Previous buffer",
         },
 
-        -- mappings seen under group name "Buffer"
-        ["<Leader>bd"] = {
-          function()
-            require("astroui.status.heirline").buffer_picker(function(bufnr)
-              require("astrocore.buffer").close(bufnr)
-            end)
-          end,
-          desc = "Close buffer from tabline",
-        },
-
         ["<Leader><Leader>"] = {
           "<cmd>Dispatch<cr>",
           desc = "Dispatch",
@@ -111,7 +101,7 @@ return {
         -- ["<C-S>"] = false,
 
         -- Overridden in vim-fugitive config
-        ["<leader>gg"] = {},
+        ["<Leader>gg"] = {},
 
         ["<Leader>fp"] = {
           "<cmd>NeovimProjectDiscover<cr>",

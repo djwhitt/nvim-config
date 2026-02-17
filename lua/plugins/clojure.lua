@@ -65,14 +65,27 @@ return {
           { clear = true }
         ),
         callback = function()
-          wk.register({
-            p = {
-              name = "Parinfer",
-              t = { "<cmd>ParinferToggle<cr>", "Toggle Parinfer" },
-              e = { "<cmd>ParinferOn<cr>", "Enable Parinfer" },
-              d = { "<cmd>ParinferOff<cr>", "Disable Parinfer" },
+          wk.add({
+            { "<localleader>p", group = "Parinfer", buffer = 0 },
+            {
+              "<localleader>pt",
+              "<cmd>ParinferToggle<cr>",
+              desc = "Toggle Parinfer",
+              buffer = 0,
             },
-          }, { prefix = "<localleader>", buffer = 0 })
+            {
+              "<localleader>pe",
+              "<cmd>ParinferOn<cr>",
+              desc = "Enable Parinfer",
+              buffer = 0,
+            },
+            {
+              "<localleader>pd",
+              "<cmd>ParinferOff<cr>",
+              desc = "Disable Parinfer",
+              buffer = 0,
+            },
+          })
         end,
         pattern = "clojure",
       })
@@ -107,12 +120,24 @@ return {
         ),
         pattern = "clojure",
       })
+
+      -- Parinfer completion hack: briefly enable Parinfer after completion
+      -- to re-balance brackets inserted by the completion engine
+      vim.api.nvim_create_autocmd("CompleteDone", {
+        group = vim.api.nvim_create_augroup(
+          "ParinferCompletionHack",
+          { clear = true }
+        ),
+        pattern = "*.clj,*.cljs,*.cljc,*.edn",
+        callback = function()
+          if vim.b.parinfer_enabled ~= true then
+            vim.cmd("ParinferOn")
+            vim.defer_fn(function()
+              vim.cmd("ParinferOff")
+            end, 0)
+          end
+        end,
+      })
     end,
-  },
-  {
-    "PaterJason/cmp-conjure",
-    ft = conjure_fts,
-    lazy = true,
-    dependencies = { "Olical/conjure" },
   },
 }
