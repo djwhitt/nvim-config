@@ -11,6 +11,7 @@ return {
       panel = { enabled = false },
       filetypes = {
         clojure = true,
+        elixir = true,
         javascript = true,
         lua = true,
         make = true,

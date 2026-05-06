@@ -75,6 +75,7 @@ return {
       "bashls",
       "biome",
       "clojure_lsp",
+      "elixirls",
       "eslint",
       "lua_ls",
       "nil_ls",

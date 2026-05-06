@@ -4,6 +4,9 @@ return {
   opts = {
     ensure_installed = {
       "clojure",
+      "eex",
+      "elixir",
+      "heex",
       "just",
       "lua",
       "vim",

@@ -12,6 +12,9 @@ return {
       -- Clojure
       --null_ls.builtins.formatting.zprint,
 
+      -- Elixir
+      null_ls.builtins.diagnostics.credo,
+
       -- Lua
       null_ls.builtins.diagnostics.selene, -- Lua diagnostics
       null_ls.builtins.formatting.stylua,
