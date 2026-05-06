@@ -1,7 +1,7 @@
 return {
   "zbirenbaum/copilot.lua",
-  requires = {
-    "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+  dependencies = {
+    "copilotlsp-nvim/copilot-lsp", -- required for sidekick.nvim NES (Next Edit Suggestions)
   },
   cmd = "Copilot",
   event = "InsertEnter",

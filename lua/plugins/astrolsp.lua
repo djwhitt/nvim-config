@@ -34,9 +34,6 @@ return {
       },
       timeout_ms = 1000, -- default format timeout
       filter = function(client) -- fully override the default formatting function
-        local util = require("lspconfig.util")
-
-        local git_root = util.find_git_ancestor(vim.fn.expand("%:p"))
         local biome_filetypes = {
           "javascript",
           "javascriptreact",
@@ -53,6 +50,8 @@ return {
         -- If the filetype supported by Biome use Biome or fallback to other
         -- formatters if there is no Biome config at the git root.
         if vim.tbl_contains(biome_filetypes, vim.bo.filetype) then
+          local git_root = vim.fs.root(vim.api.nvim_buf_get_name(0), { ".git" })
+            or vim.fn.getcwd()
           return (
             client.name == "biome"
             or (
@@ -138,7 +137,7 @@ return {
           end,
           desc = "Toggle LSP semantic highlight (buffer)",
           cond = function(client)
-            return client.supports_method("textDocument/semanticTokens/full")
+            return client:supports_method("textDocument/semanticTokens/full")
               and vim.lsp.semantic_tokens ~= nil
           end,
         },
