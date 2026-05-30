@@ -110,6 +110,16 @@ return {
       mux = {
         enabled = true,
       },
+      win = {
+        keys = {
+          shift_enter = {
+            "<S-CR>",
+            function(t) vim.api.nvim_chan_send(t.job, "\27\r") end,
+            mode = "t",
+            desc = "Send shift+enter to CLI",
+          },
+        },
+      },
     },
   },
 }
