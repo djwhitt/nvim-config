@@ -1,1 +1,9 @@
-/home/djwhitt/.dotfiles/config/nvim/lua/user/plugins/ui.lua
+return {
+  {
+    'rebelot/heirline.nvim',
+    opts = function(_, opts)
+      opts.winbar = nil
+      return opts
+    end,
+  },
+}
