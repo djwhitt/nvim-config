@@ -25,6 +25,7 @@ return {
     -- vim options can be configured here
     options = {
       opt = { -- vim.opt.<key>
+        background = "dark", -- GUIs like Neovide can't detect terminal bg; pin dark so astrotheme uses astrodark
         cmdheight = 1,
         foldcolumn = "0",
         number = false,
@@ -40,6 +41,14 @@ return {
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
+        -- Neovide: disable animations (no-ops in terminal Neovim)
+        neovide_cursor_animation_length = 0,
+        neovide_cursor_trail_size = 0,
+        neovide_scroll_animation_length = 0,
+        neovide_position_animation_length = 0,
+        neovide_cursor_animate_in_insert_mode = false,
+        neovide_cursor_animate_command_line = false,
+        neovide_cursor_vfx_mode = "",
       },
     },
 
