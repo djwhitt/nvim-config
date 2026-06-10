@@ -15,15 +15,8 @@ local sexp_fts = {
   "yuck",
 }
 return {
-  -- Syntax
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "clojure" })
-      end
-    end,
-  },
+  -- Syntax (clojure parser is installed via AstroCore's treesitter module in
+  -- lua/plugins/treesitter.lua)
   {
     "clojure-vim/clojure.vim",
     ft = "clojure",

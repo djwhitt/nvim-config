@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-AstroNvim v5 configuration using Lazy.nvim as the plugin manager. Multi-language setup with emphasis on Clojure, Lua, JavaScript/TypeScript, Nix, and Terraform.
+AstroNvim v6 configuration using Lazy.nvim as the plugin manager. Multi-language setup with emphasis on Clojure, Lua, JavaScript/TypeScript, Nix, and Terraform.
 
 ## Architecture
 
@@ -41,3 +41,4 @@ Run StyLua manually: `stylua lua/`
 - Completion is manual-trigger only (`<C-Space>`) — auto_show is disabled
 - snacks.nvim provides picker, dashboard, notifications, and input UI
 - mason.nvim v2 requires `build = false` workaround (MasonUpdate async bug)
+- Treesitter (v6): `nvim-treesitter` is on its `main` branch (parser-download utility only). Parsers/highlighting are configured via AstroCore's `treesitter` module (`opts.treesitter.ensure_installed` in `lua/plugins/treesitter.lua`), NOT via `nvim-treesitter` opts. Parsers are compiled from source (needs the `tree-sitter` CLI + a C compiler) into `~/.local/share/nvim/site/parser`. If highlighting throws query errors after a Neovim upgrade (e.g. `Invalid field name` / `attempt to call method 'range'`), wipe `~/.local/share/nvim/site/{parser,queries}` and reinstall so parsers recompile against the current grammar.

@@ -1,6 +1,6 @@
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     build = false, -- MasonUpdate has a bug in v2, skip auto-build
   },
 }

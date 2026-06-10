@@ -1,6 +1,6 @@
 return {
   {
-    "Saghen/blink.cmp",
+    "saghen/blink.cmp",
     dependencies = {
       { "giuxtaposition/blink-cmp-copilot" },
     },
